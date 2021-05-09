@@ -1,0 +1,125 @@
+<div class="toolbar" role="banner">
+  <img width="40" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+  <span>Welcome</span>
+  <div class="spacer"></div>
+</div>
+
+<div class="content">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Person List</h5>
+
+        <div class="card-body">
+
+          <ul class="list-group">
+            <li (click)="selectedPerson(person)" class="list-group-item"
+              [ngClass]="[(selected?.firstName === person.firstName) ? 'active' : '']"
+              *ngFor="let person of personList">{{person.firstName}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Contact Form</h5>
+
+        <div class="card-body">
+          <form [formGroup]="pform" (ngSubmit)="addPerson(pform.value)">
+            <div class="row mb-2">
+              <label for="staticEmail" class="col-sm-3 col-form-label">First Name:</label>
+              <div class="col">
+                <input type="text" class="form-control" formControlName="firstName" name="firstName" required>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Last Name:</label>
+              <div class="col">
+                <input type="text" class="form-control" formControlName="lastName" name="lastName" required>
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <label for="inputPassword" class="col-sm-3 col-form-label">Last Name:</label>
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="m" value="m">
+                  <label class="form-check-label" for="m">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="f" value="f">
+                  <label class="form-check-label" for="f">Female</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Email:</label>
+              <div class="col">
+                <input type="email" class="form-control" formControlName="lastName" name="Email"
+                  ng-model="person.email">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 col-form-label">Phone:</label>
+              <div class="col">
+                <input type="text" class="form-control" formControlName="phone" name="phone" ng-model="person.phone">
+              </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Add Person</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <div class="row mt-3">
+
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Contact Card Template</h5>
+
+        <div class="card-body">
+          <textarea [(ngModel)]='selected.template' rows="30" cols="120">
+
+
+         </textarea>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" (click)="save()">save</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-sm-6">
+      <div class="card">
+        <h5 class="card-header">Contact Card</h5>
+
+        <div class="card-body">
+
+          <template #cardConteiner></template>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<iframe id="iframe" width="1" height="1" sandbox="allow-scripts allow-forms" frameBorder="0"
+  src="http://localhost:8000"></iframe>
+<router-outlet></router-outlet>
